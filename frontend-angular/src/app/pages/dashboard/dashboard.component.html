@@ -1,0 +1,55 @@
+<div class="container">
+
+  <h2>Dashboard statistiques</h2>
+
+  <p *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </p>
+
+  <div *ngIf="stats">
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Total affaires</h3>
+        <p>{{ stats.totalAffaires }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Total crimes</h3>
+        <p>{{ stats.totalCrimes }}</p>
+      </div>
+
+    </div>
+
+    <div class="charts">
+
+      <div class="chart-card">
+        <h3>Crimes par type</h3>
+        <canvas id="crimesTypeChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Crimes par ville</h3>
+        <canvas id="crimesVilleChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Crimes par statut</h3>
+        <canvas id="crimesStatutChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Affaires par statut</h3>
+        <canvas id="affairesStatutChart"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="!stats && !errorMessage">
+    Chargement des statistiques...
+  </p>
+
+</div>

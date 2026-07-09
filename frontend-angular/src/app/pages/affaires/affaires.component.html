@@ -1,0 +1,66 @@
+<div class="container">
+
+  <h2>Gestion des affaires</h2>
+
+  <div class="form-card">
+    <h3>Ajouter une affaire</h3>
+    <input
+      type="text"
+      placeholder="Titre"
+      [(ngModel)]="newAffaire.titre"
+    >
+
+    <textarea
+      placeholder="Description"
+      [(ngModel)]="newAffaire.description">
+    </textarea>
+
+    <select [(ngModel)]="newAffaire.statut">
+      <option value="OUVERTE">OUVERTE</option>
+      <option value="EN_COURS">EN COURS</option>
+      <option value="CLOTUREE">CLÔTURÉE</option>
+    </select>
+
+    <button (click)="addAffaire()">Ajouter</button>
+  </div>
+
+  <div class="list-card">
+    <h3>Liste des affaires</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Numéro</th>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Statut</th>
+          <th>Date création</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let affaire of affaires">
+          <td>{{ affaire.id }}</td>
+          <td>{{ affaire.numeroAffaire }}</td>
+          <td>{{ affaire.titre }}</td>
+          <td>{{ affaire.description }}</td>
+          <td>{{ affaire.statut }}</td>
+          <td>{{ affaire.dateCreation }}</td>
+          <td>
+            <button class="delete-btn" (click)="deleteAffaire(affaire.id)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="affaires.length === 0">
+      Aucune affaire trouvée.
+    </p>
+
+  </div>
+
+</div>
