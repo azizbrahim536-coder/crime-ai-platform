@@ -22,6 +22,15 @@ public class CrimeController {
         return crimeService.getAllCrimes();
     }
 
+    @GetMapping("/search")
+    public List<Crime> searchCrimes(
+            @RequestParam(required = false) String typeCrime,
+            @RequestParam(required = false) String ville,
+            @RequestParam(required = false) String statut
+    ) {
+        return crimeService.searchCrimes(typeCrime, ville, statut);
+    }
+
     @GetMapping("/{id}")
     public Crime getCrimeById(@PathVariable Long id) {
         return crimeService.getCrimeById(id);

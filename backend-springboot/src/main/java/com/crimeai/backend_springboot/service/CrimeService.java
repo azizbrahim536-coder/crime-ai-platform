@@ -80,4 +80,7 @@ public class CrimeService {
     public List<Crime> getCrimesByStatut(String statut) {
         return crimeRepository.findByStatut(statut);
     }
+    public List<Crime> searchCrimes(String typeCrime, String ville, String statut) {
+        return crimeRepository.searchCrimes(typeCrime, ville, statut);
+    }
 }
