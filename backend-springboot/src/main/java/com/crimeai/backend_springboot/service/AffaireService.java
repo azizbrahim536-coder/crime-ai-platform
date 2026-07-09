@@ -34,13 +34,20 @@ public class AffaireService {
             affaire.setStatut("OUVERTE");
         }
 
-        return affaireRepository.save(affaire);
+        affaire.setNumeroAffaire(null);
+        Affaire savedAffaire = affaireRepository.save(affaire);
+
+        int year = LocalDateTime.now().getYear();
+        String numero = "AFF-" + year + "-" + String.format("%04d", savedAffaire.getId());
+
+        savedAffaire.setNumeroAffaire(numero);
+
+            return affaireRepository.save(savedAffaire);
     }
 
     public Affaire updateAffaire(Long id, Affaire newAffaire) {
         Affaire affaire = getAffaireById(id);
 
-        affaire.setNumeroAffaire(newAffaire.getNumeroAffaire());
         affaire.setTitre(newAffaire.getTitre());
         affaire.setDescription(newAffaire.getDescription());
         affaire.setStatut(newAffaire.getStatut());
