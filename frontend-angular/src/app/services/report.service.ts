@@ -15,5 +15,11 @@ export class ReportService {
     return this.http.get(`${this.apiUrl}/affaires/${affaireId}/pdf`, {
       responseType: 'blob'
     });
+
   }
+  downloadCrimesExcel(): Observable<Blob> {
+  return this.http.get(`${this.apiUrl}/crimes/excel`, {
+    responseType: 'blob'
+  });
+}
 }

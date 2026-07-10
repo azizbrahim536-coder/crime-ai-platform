@@ -1,6 +1,9 @@
 <div class="container">
 
   <h2>Dashboard statistiques</h2>
+  <button class="excel-btn" (click)="downloadExcel()">
+  Télécharger Excel
+</button>
 
   <p *ngIf="errorMessage" class="error">
     {{ errorMessage }}

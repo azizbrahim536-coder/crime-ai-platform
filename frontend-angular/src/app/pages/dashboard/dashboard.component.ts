@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { DashboardStats } from '../../models/dashboard-stats';
 
 import Chart from 'chart.js/auto';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,9 @@ export class DashboardComponent implements OnInit {
   crimesStatutChart?: Chart;
   affairesStatutChart?: Chart;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(
+    private dashboardService: DashboardService,
+  private reportService: ReportService) {}
 
   ngOnInit(): void {
     this.loadStats();
@@ -117,4 +120,22 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+  downloadExcel(): void {
+  this.reportService.downloadCrimesExcel().subscribe({
+    next: (blob) => {
+      const fileURL = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+
+      link.href = fileURL;
+      link.download = 'crimes-statistiques.xlsx';
+      link.click();
+
+      window.URL.revokeObjectURL(fileURL);
+    },
+    error: (err) => {
+      console.error('Erreur téléchargement Excel', err);
+      alert('Erreur lors du téléchargement du fichier Excel');
+    }
+  });
+}
 }
