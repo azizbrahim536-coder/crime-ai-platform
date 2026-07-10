@@ -8,6 +8,7 @@ import { PersonneImpliquee } from '../../models/personne-impliquee';
 import { AffaireService } from '../../services/affaire.service';
 import { CrimeService } from '../../services/crime.service';
 import { PersonneImpliqueeService } from '../../services/personne-impliquee.service';
+import { ReportService } from '../../services/report.service';
 
 @Component({
   selector: 'app-affaire-details',
@@ -30,6 +31,7 @@ export class AffaireDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private affaireService: AffaireService,
     private crimeService: CrimeService,
+    private reportService: ReportService,
     private personneService: PersonneImpliqueeService
   ) {}
 
@@ -77,4 +79,25 @@ export class AffaireDetailsComponent implements OnInit {
       }
     });
   }
+
+  downloadPdf(): void {
+  if (!this.affaireId) return;
+
+  this.reportService.downloadAffairePdf(this.affaireId).subscribe({
+    next: (blob) => {
+      const fileURL = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+
+      link.href = fileURL;
+      link.download = `rapport-affaire-${this.affaireId}.pdf`;
+      link.click();
+
+      window.URL.revokeObjectURL(fileURL);
+    },
+    error: (err) => {
+      console.error('Erreur téléchargement PDF', err);
+      alert('Erreur lors du téléchargement du PDF');
+    }
+  });
+}
 }

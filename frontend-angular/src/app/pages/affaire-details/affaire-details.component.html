@@ -2,6 +2,10 @@
 
   <h2>Détails de l'affaire</h2>
 
+  <button class="pdf-btn" (click)="downloadPdf()">
+  Télécharger rapport PDF
+</button>
+
   <div *ngIf="affaire" class="details-card">
     <h3>{{ affaire.numeroAffaire }} - {{ affaire.titre }}</h3>
 

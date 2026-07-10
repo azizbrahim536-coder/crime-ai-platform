@@ -19,7 +19,9 @@ newAffaire: Affaire = {
   statut: 'OUVERTE'
 };
 
-  constructor(private affaireService: AffaireService) {}
+  constructor(private affaireService: AffaireService) {
+    
+  }
 
   ngOnInit(): void {
     this.loadAffaires();
