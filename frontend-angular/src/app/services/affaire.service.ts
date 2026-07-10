@@ -25,4 +25,7 @@ export class AffaireService {
       responseType: 'text'
     });
   }
+  updateAffaire(id: number, affaire: Affaire): Observable<Affaire> {
+  return this.http.put<Affaire>(`${this.apiUrl}/${id}`, affaire);
+}
 }

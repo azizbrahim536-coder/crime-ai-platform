@@ -10,7 +10,11 @@ import { Affaire } from '../../models/affaire';
   styleUrls: ['./crimes.component.css']
 })
 export class CrimesComponent implements OnInit {
-    filterTypeCrime: string = '';
+
+  isEditMode: boolean = false;
+  selectedCrimeId?: number;
+
+  filterTypeCrime: string = '';
   filterVille: string = '';
   filterStatut: string = '';
 
@@ -62,47 +66,47 @@ export class CrimesComponent implements OnInit {
     });
   }
 
-  addCrime(): void {
-    if (!this.newCrime.typeCrime || !this.newCrime.dateCrime || !this.newCrime.ville) {
-      alert('Veuillez remplir type crime, date et ville');
-      return;
-    }
+saveCrime(): void {
+  if (!this.newCrime.typeCrime || !this.newCrime.dateCrime || !this.newCrime.ville) {
+    alert('Veuillez remplir type crime, date et ville');
+    return;
+  }
 
-    const crimeToSend: Crime = {
-      ...this.newCrime
+  const crimeToSend: Crime = {
+    ...this.newCrime
+  };
+
+  if (this.selectedAffaireId) {
+    crimeToSend.affaire = {
+      id: this.selectedAffaireId,
+      titre: '',
+      description: '',
+      statut: ''
     };
+  }
 
-    if (this.selectedAffaireId) {
-      crimeToSend.affaire = {
-        id: this.selectedAffaireId,
-        titre: '',
-        description: '',
-        statut: ''
-      };
-    }
-
+  if (this.isEditMode && this.selectedCrimeId) {
+    this.crimeService.updateCrime(this.selectedCrimeId, crimeToSend).subscribe({
+      next: () => {
+        this.loadCrimes();
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error('Erreur modification crime', err);
+      }
+    });
+  } else {
     this.crimeService.createCrime(crimeToSend).subscribe({
       next: () => {
         this.loadCrimes();
-
-        this.newCrime = {
-          typeCrime: '',
-          description: '',
-          dateCrime: '',
-          adresse: '',
-          ville: '',
-          latitude: null,
-          longitude: null,
-          statut: 'SIGNALE'
-        };
-
-        this.selectedAffaireId = null;
+        this.resetForm();
       },
       error: (err) => {
         console.error('Erreur ajout crime', err);
       }
     });
   }
+}
 
   deleteCrime(id?: number): void {
     if (!id) return;
@@ -139,4 +143,40 @@ resetFilters(): void {
   this.filterStatut = '';
   this.loadCrimes();
 }
+editCrime(crime: Crime): void {
+  this.isEditMode = true;
+  this.selectedCrimeId = crime.id;
+
+  this.newCrime = {
+    typeCrime: crime.typeCrime,
+    description: crime.description,
+    dateCrime: crime.dateCrime,
+    adresse: crime.adresse,
+    ville: crime.ville,
+    latitude: crime.latitude,
+    longitude: crime.longitude,
+    statut: crime.statut
+  };
+
+  this.selectedAffaireId = crime.affaire?.id || null;
+}
+
+resetForm(): void {
+  this.isEditMode = false;
+  this.selectedCrimeId = undefined;
+  this.selectedAffaireId = null;
+
+  this.newCrime = {
+    typeCrime: '',
+    description: '',
+    dateCrime: '',
+    adresse: '',
+    ville: '',
+    latitude: null,
+    longitude: null,
+    statut: 'SIGNALE'
+  };
+}
+
+
 }

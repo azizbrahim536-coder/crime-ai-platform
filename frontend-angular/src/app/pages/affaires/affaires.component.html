@@ -21,8 +21,16 @@
       <option value="CLOTUREE">CLÔTURÉE</option>
     </select>
 
-    <button (click)="addAffaire()">Ajouter</button>
-  </div>
+<button (click)="saveAffaire()">
+  {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+</button>
+
+<button
+  *ngIf="isEditMode"
+  class="reset-btn"
+  (click)="resetForm()">
+  Annuler
+</button>  </div>
 
   <div class="list-card">
     <h3>Liste des affaires</h3>
@@ -49,10 +57,14 @@
           <td>{{ affaire.statut }}</td>
           <td>{{ affaire.dateCreation }}</td>
           <td>
-            <button class="delete-btn" (click)="deleteAffaire(affaire.id)">
-              Supprimer
-            </button>
-          </td>
+  <button class="edit-btn" (click)="editAffaire(affaire)">
+    Éditer
+  </button>
+
+  <button class="delete-btn" (click)="deleteAffaire(affaire.id)">
+    Supprimer
+  </button>
+</td>
         </tr>
       </tbody>
     </table>

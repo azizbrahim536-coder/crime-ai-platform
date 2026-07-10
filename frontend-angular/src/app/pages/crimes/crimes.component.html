@@ -61,7 +61,16 @@
       </option>
     </select>
 
-    <button (click)="addCrime()">Ajouter</button>
+    <button (click)="saveCrime()">
+  {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+</button>
+
+<button
+  *ngIf="isEditMode"
+  class="reset-btn"
+  (click)="resetForm()">
+  Annuler
+</button>
   </div>
 
   <div class="filter-card">
@@ -127,10 +136,14 @@
             <span *ngIf="!crime.affaire">Non liée</span>
           </td>
           <td>
-            <button class="delete-btn" (click)="deleteCrime(crime.id)">
-              Supprimer
-            </button>
-          </td>
+  <button class="edit-btn" (click)="editCrime(crime)">
+    Éditer
+  </button>
+
+  <button class="delete-btn" (click)="deleteCrime(crime.id)">
+    Supprimer
+  </button>
+</td>
         </tr>
       </tbody>
     </table>

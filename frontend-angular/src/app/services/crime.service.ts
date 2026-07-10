@@ -45,5 +45,7 @@ export class CrimeService {
 
     return this.http.get<Crime[]>(`${this.apiUrl}/search`, { params });
   }
-
+updateCrime(id: number, crime: Crime): Observable<Crime> {
+  return this.http.put<Crime>(`${this.apiUrl}/${id}`, crime);
+}
 }

@@ -68,3 +68,37 @@ td {
   border: 1px solid #dddddd;
   padding: 10px;
 }
+.edit-btn {
+  background: #2563eb;
+  margin-right: 8px;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.reset-btn {
+  background: #6b7280;
+  margin-left: 10px;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
+}
+.edit-btn {
+  background: #2563eb;
+  margin-right: 8px;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.reset-btn {
+  background: #6b7280;
+  margin-left: 10px;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
+}

@@ -10,6 +10,8 @@ import { Affaire } from '../../models/affaire';
 export class AffairesComponent implements OnInit {
 
   affaires: Affaire[] = [];
+  isEditMode: boolean = false;
+selectedAffaireId?: number;
 
 newAffaire: Affaire = {
   titre: '',
@@ -34,28 +36,56 @@ newAffaire: Affaire = {
     });
   }
 
-  addAffaire(): void {
-   if (!this.newAffaire.titre) {
-  alert('Veuillez remplir le titre de l’affaire');
-  return;
-}
+saveAffaire(): void {
+  if (!this.newAffaire.titre) {
+    alert('Veuillez remplir le titre de l’affaire');
+    return;
+  }
 
+  if (this.isEditMode && this.selectedAffaireId) {
+    this.affaireService.updateAffaire(this.selectedAffaireId, this.newAffaire).subscribe({
+      next: () => {
+        this.loadAffaires();
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error('Erreur modification affaire', err);
+      }
+    });
+  } else {
     this.affaireService.createAffaire(this.newAffaire).subscribe({
       next: () => {
         this.loadAffaires();
-
-        this.newAffaire = {
-          numeroAffaire: '',
-          titre: '',
-          description: '',
-          statut: 'OUVERTE'
-        };
+        this.resetForm();
       },
       error: (err) => {
         console.error('Erreur ajout affaire', err);
       }
     });
   }
+}
+editAffaire(affaire: Affaire): void {
+  this.isEditMode = true;
+  this.selectedAffaireId = affaire.id;
+
+  this.newAffaire = {
+    numeroAffaire: affaire.numeroAffaire,
+    titre: affaire.titre,
+    description: affaire.description,
+    statut: affaire.statut
+  };
+}
+
+resetForm(): void {
+  this.isEditMode = false;
+  this.selectedAffaireId = undefined;
+
+  this.newAffaire = {
+    titre: '',
+    description: '',
+    statut: 'OUVERTE'
+  };
+}
 
   deleteAffaire(id?: number): void {
     if (!id) return;
