@@ -30,6 +30,10 @@ public class CrimeController {
     ) {
         return crimeService.searchCrimes(typeCrime, ville, statut);
     }
+    @GetMapping("/affaire/{affaireId}")
+    public List<Crime> getCrimesByAffaire(@PathVariable Long affaireId) {
+        return crimeService.getCrimesByAffaire(affaireId);
+    }
 
     @GetMapping("/{id}")
     public Crime getCrimeById(@PathVariable Long id) {

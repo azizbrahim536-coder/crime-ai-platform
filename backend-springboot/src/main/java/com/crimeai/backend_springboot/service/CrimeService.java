@@ -83,4 +83,7 @@ public class CrimeService {
     public List<Crime> searchCrimes(String typeCrime, String ville, String statut) {
         return crimeRepository.searchCrimes(typeCrime, ville, statut);
     }
+    public List<Crime> getCrimesByAffaire(Long affaireId) {
+        return crimeRepository.findByAffaireId(affaireId);
+    }
 }

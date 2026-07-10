@@ -15,6 +15,7 @@ public interface CrimeRepository extends JpaRepository<Crime, Long> {
     List<Crime> findByVille(String ville);
 
     List<Crime> findByStatut(String statut);
+    List<Crime> findByAffaireId(Long affaireId);
 
     @Query("""
         SELECT c FROM Crime c

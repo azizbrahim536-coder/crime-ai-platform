@@ -64,6 +64,9 @@
   <button class="delete-btn" (click)="deleteAffaire(affaire.id)">
     Supprimer
   </button>
+  <button class="details-btn" [routerLink]="['/affaires', affaire.id]">
+  Détails
+</button>
 </td>
         </tr>
       </tbody>

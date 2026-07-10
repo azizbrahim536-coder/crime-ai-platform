@@ -45,12 +45,30 @@ button:hover {
   background: #14263d;
 }
 
+.edit-btn {
+  background: #2563eb;
+  margin-right: 8px;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
 .delete-btn {
   background: #b91c1c;
 }
 
 .delete-btn:hover {
   background: #7f1d1d;
+}
+
+.reset-btn {
+  background: #6b7280;
+  margin-left: 10px;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
 }
 
 table {
@@ -67,12 +85,4 @@ th {
 td {
   border: 1px solid #dddddd;
   padding: 10px;
-}
-.details-btn {
-  background: #059669;
-  margin-right: 8px;
-}
-
-.details-btn:hover {
-  background: #047857;
 }

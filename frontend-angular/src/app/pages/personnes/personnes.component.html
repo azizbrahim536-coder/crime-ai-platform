@@ -1,0 +1,124 @@
+<div class="container">
+
+  <h2>Gestion des personnes impliquées</h2>
+
+  <div class="form-card">
+    <h3>{{ isEditMode ? 'Modifier une personne' : 'Ajouter une personne' }}</h3>
+
+    <input
+      type="text"
+      placeholder="Nom"
+      [(ngModel)]="newPersonne.nom"
+    >
+
+    <input
+      type="text"
+      placeholder="Prénom"
+      [(ngModel)]="newPersonne.prenom"
+    >
+
+    <input
+      type="date"
+      [(ngModel)]="newPersonne.dateNaissance"
+    >
+
+    <select [(ngModel)]="newPersonne.genre">
+      <option value="">Choisir genre</option>
+      <option value="Homme">Homme</option>
+      <option value="Femme">Femme</option>
+    </select>
+
+    <input
+      type="text"
+      placeholder="Téléphone"
+      [(ngModel)]="newPersonne.telephone"
+    >
+
+    <input
+      type="text"
+      placeholder="Adresse"
+      [(ngModel)]="newPersonne.adresse"
+    >
+
+    <select [(ngModel)]="newPersonne.typePersonne">
+      <option value="SUSPECT">SUSPECT</option>
+      <option value="VICTIME">VICTIME</option>
+      <option value="TEMOIN">TÉMOIN</option>
+    </select>
+
+    <select [(ngModel)]="selectedAffaireId">
+      <option [ngValue]="null">Aucune affaire liée</option>
+      <option *ngFor="let affaire of affaires" [ngValue]="affaire.id">
+        {{ affaire.numeroAffaire }} - {{ affaire.titre }}
+      </option>
+    </select>
+
+    <textarea
+      placeholder="Notes"
+      [(ngModel)]="newPersonne.notes">
+    </textarea>
+
+    <button (click)="savePersonne()">
+      {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+    </button>
+
+    <button
+      *ngIf="isEditMode"
+      class="reset-btn"
+      (click)="resetForm()">
+      Annuler
+    </button>
+  </div>
+
+  <div class="list-card">
+    <h3>Liste des personnes impliquées</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Type</th>
+          <th>Genre</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+          <th>Affaire</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let personne of personnes">
+          <td>{{ personne.id }}</td>
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.typePersonne }}</td>
+          <td>{{ personne.genre }}</td>
+          <td>{{ personne.telephone }}</td>
+          <td>{{ personne.adresse }}</td>
+          <td>
+            <span *ngIf="personne.affaire">
+              {{ personne.affaire.numeroAffaire || personne.affaire.id }}
+            </span>
+            <span *ngIf="!personne.affaire">Non liée</span>
+          </td>
+          <td>
+            <button class="edit-btn" (click)="editPersonne(personne)">
+              Éditer
+            </button>
+
+            <button class="delete-btn" (click)="deletePersonne(personne.id)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="personnes.length === 0">
+      Aucune personne trouvée.
+    </p>
+  </div>
+
+</div>

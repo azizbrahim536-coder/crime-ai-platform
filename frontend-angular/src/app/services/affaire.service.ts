@@ -28,4 +28,7 @@ export class AffaireService {
   updateAffaire(id: number, affaire: Affaire): Observable<Affaire> {
   return this.http.put<Affaire>(`${this.apiUrl}/${id}`, affaire);
 }
+getAffaireById(id: number): Observable<Affaire> {
+  return this.http.get<Affaire>(`${this.apiUrl}/${id}`);
+}
 }

@@ -48,4 +48,8 @@ export class CrimeService {
 updateCrime(id: number, crime: Crime): Observable<Crime> {
   return this.http.put<Crime>(`${this.apiUrl}/${id}`, crime);
 }
+getCrimesByAffaire(affaireId: number): Observable<Crime[]> {
+  return this.http.get<Crime[]>(`${this.apiUrl}/affaire/${affaireId}`);
+}
+
 }

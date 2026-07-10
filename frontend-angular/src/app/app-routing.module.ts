@@ -5,6 +5,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AffairesComponent } from './pages/affaires/affaires.component';
 import { CrimesComponent } from './pages/crimes/crimes.component';
 import { MapComponent } from './pages/map/map.component';
+import { PersonnesComponent } from './pages/personnes/personnes.component';
+import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapComponent
+  },
+  {
+  path: 'affaires/:id',
+  component: AffaireDetailsComponent
+},
+  {
+    path: 'personnes',
+    component: PersonnesComponent
   }
 ];
 

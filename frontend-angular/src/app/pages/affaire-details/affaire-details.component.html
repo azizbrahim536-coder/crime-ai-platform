@@ -1,0 +1,137 @@
+<div class="container">
+
+  <h2>Détails de l'affaire</h2>
+
+  <div *ngIf="affaire" class="details-card">
+    <h3>{{ affaire.numeroAffaire }} - {{ affaire.titre }}</h3>
+
+    <p><strong>Description:</strong> {{ affaire.description }}</p>
+    <p><strong>Statut:</strong> {{ affaire.statut }}</p>
+    <p><strong>Date création:</strong> {{ affaire.dateCreation }}</p>
+  </div>
+
+  <div class="section-card">
+    <h3>Crimes liés à cette affaire</h3>
+
+    <table *ngIf="crimes.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Ville</th>
+          <th>Adresse</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let crime of crimes">
+          <td>{{ crime.id }}</td>
+          <td>{{ crime.typeCrime }}</td>
+          <td>{{ crime.description }}</td>
+          <td>{{ crime.dateCrime }}</td>
+          <td>{{ crime.ville }}</td>
+          <td>{{ crime.adresse }}</td>
+          <td>{{ crime.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="crimes.length === 0">
+      Aucun crime lié à cette affaire.
+    </p>
+  </div>
+
+  <div class="section-card">
+    <h3>Suspects</h3>
+
+    <table *ngIf="suspects.length > 0">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Genre</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let personne of suspects">
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.genre }}</td>
+          <td>{{ personne.telephone }}</td>
+          <td>{{ personne.adresse }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="suspects.length === 0">
+      Aucun suspect lié.
+    </p>
+  </div>
+
+  <div class="section-card">
+    <h3>Victimes</h3>
+
+    <table *ngIf="victimes.length > 0">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Genre</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let personne of victimes">
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.genre }}</td>
+          <td>{{ personne.telephone }}</td>
+          <td>{{ personne.adresse }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="victimes.length === 0">
+      Aucune victime liée.
+    </p>
+  </div>
+
+  <div class="section-card">
+    <h3>Témoins</h3>
+
+    <table *ngIf="temoins.length > 0">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Genre</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let personne of temoins">
+          <td>{{ personne.nom }}</td>
+          <td>{{ personne.prenom }}</td>
+          <td>{{ personne.genre }}</td>
+          <td>{{ personne.telephone }}</td>
+          <td>{{ personne.adresse }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="temoins.length === 0">
+      Aucun témoin lié.
+    </p>
+  </div>
+
+</div>
