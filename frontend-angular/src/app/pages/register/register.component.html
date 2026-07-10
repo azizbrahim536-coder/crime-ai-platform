@@ -1,0 +1,54 @@
+<div class="auth-container">
+
+  <div class="auth-card">
+    <h2>Créer un compte</h2>
+
+    <p *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </p>
+
+    <input
+      type="text"
+      placeholder="Nom"
+      [(ngModel)]="registerData.nom"
+    >
+
+    <input
+      type="text"
+      placeholder="Prénom"
+      [(ngModel)]="registerData.prenom"
+    >
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="registerData.email"
+    >
+
+    <input
+      type="password"
+      placeholder="Mot de passe"
+      [(ngModel)]="registerData.password"
+    >
+
+    <input
+      type="text"
+      placeholder="Téléphone"
+      [(ngModel)]="registerData.telephone"
+    >
+
+    <select [(ngModel)]="registerData.roleName">
+      <option value="ADMIN">ADMIN</option>
+      <option value="ANALYSTE">ANALYSTE</option>
+      <option value="ENQUETEUR">ENQUÊTEUR</option>
+    </select>
+
+    <button (click)="register()">Créer le compte</button>
+
+    <p class="link-text">
+      Vous avez déjà un compte ?
+      <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+
+</div>

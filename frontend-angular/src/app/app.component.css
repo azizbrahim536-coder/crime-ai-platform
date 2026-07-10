@@ -1,6 +1,8 @@
 .navbar {
   background: #1e3a5f;
   padding: 15px 30px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar a {
@@ -12,4 +14,24 @@
 
 .navbar a:hover {
   text-decoration: underline;
+}
+
+.user-email {
+  color: white;
+  margin-left: auto;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.logout-btn {
+  background: #b91c1c;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #7f1d1d;
 }

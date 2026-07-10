@@ -13,6 +13,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MapComponent } from './pages/map/map.component';
 import { PersonnesComponent } from './pages/personnes/personnes.component';
 import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details
     DashboardComponent,
     MapComponent,
     PersonnesComponent,
-    AffaireDetailsComponent
+    AffaireDetailsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,13 @@ import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+      {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

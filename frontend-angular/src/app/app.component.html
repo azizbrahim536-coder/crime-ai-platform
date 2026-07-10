@@ -1,9 +1,17 @@
-<nav class="navbar">
+<nav class="navbar" *ngIf="authService.isLoggedIn()">
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/affaires">Affaires</a>
   <a routerLink="/crimes">Crimes</a>
   <a routerLink="/map">Carte</a>
   <a routerLink="/personnes">Personnes</a>
+
+  <span class="user-email">
+    {{ authService.getEmail() }}
+  </span>
+
+  <button class="logout-btn" (click)="logout()">
+    Déconnexion
+  </button>
 </nav>
 
 <router-outlet></router-outlet>
