@@ -1,0 +1,35 @@
+<div class="container">
+
+  <h2>Assistant IA</h2>
+
+  <div class="chat-card">
+
+    <div class="messages">
+
+      <div
+        *ngFor="let message of messages"
+        [ngClass]="message.sender === 'user' ? 'user-message' : 'bot-message'">
+
+        <strong>
+          {{ message.sender === 'user' ? 'Vous' : 'IA' }}
+        </strong>
+
+        <p>{{ message.text }}</p>
+      </div>
+
+    </div>
+
+    <div class="input-zone">
+      <input
+        type="text"
+        placeholder="Écrire une question..."
+        [(ngModel)]="question"
+        (keyup.enter)="sendMessage()"
+      >
+
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
+
+  </div>
+
+</div>

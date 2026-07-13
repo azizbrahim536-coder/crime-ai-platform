@@ -4,6 +4,7 @@ import { AffaireService } from '../../services/affaire.service';
 import { Crime } from '../../models/crime';
 import { Affaire } from '../../models/affaire';
 import { AuthService } from 'src/app/services/auth.service';
+import { AiService } from '../../services/ai.service';
 
 @Component({
   selector: 'app-crimes',
@@ -38,7 +39,8 @@ export class CrimesComponent implements OnInit {
   constructor(
     private crimeService: CrimeService,
     private affaireService: AffaireService,
-    public authService: AuthService
+    public authService: AuthService,
+    private aiService: AiService
 
   ) {}
 
@@ -179,6 +181,30 @@ resetForm(): void {
     longitude: null,
     statut: 'SIGNALE'
   };
+}
+classifyCrimeWithAi(): void {
+  if (!this.newCrime.description) {
+    alert('Veuillez écrire une description d’abord');
+    return;
+  }
+
+  this.aiService.classifyCrime(this.newCrime.description).subscribe({
+    next: (response) => {
+      this.newCrime.typeCrime = response.typeCrime;
+
+      alert(
+        'Type proposé par IA: ' +
+        response.typeCrime +
+        ' | Confiance: ' +
+        Math.round(response.confidence * 100) +
+        '%'
+      );
+    },
+    error: (err) => {
+      console.error('Erreur classification IA', err);
+      alert('Erreur lors de la classification IA');
+    }
+  });
 }
 
 

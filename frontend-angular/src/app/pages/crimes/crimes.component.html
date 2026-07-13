@@ -18,6 +18,9 @@
       placeholder="Description"
       [(ngModel)]="newCrime.description">
     </textarea>
+    <button class="ai-btn" (click)="classifyCrimeWithAi()">
+  Classifier par IA
+</button>
 
     <input
       type="datetime-local"

@@ -102,3 +102,11 @@ td {
 .reset-btn:hover {
   background: #4b5563;
 }
+.ai-btn {
+  background: #7c3aed;
+  margin-bottom: 12px;
+}
+
+.ai-btn:hover {
+  background: #5b21b6;
+}

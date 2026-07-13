@@ -17,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     PersonnesComponent,
     AffaireDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

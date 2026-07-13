@@ -12,6 +12,7 @@ import { PersonnesComponent } from './pages/personnes/personnes.component';
 import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 
 const routes: Routes = [
   {
@@ -65,11 +66,17 @@ const routes: Routes = [
     component: PersonnesComponent,
     canActivate: [AuthGuard]
   },
+    {
+  path: 'chatbot',
+  component: ChatbotComponent,
+  canActivate: [AuthGuard]
+},
 
   {
     path: '**',
     redirectTo: 'dashboard'
   }
+
 ];
 
 @NgModule({
