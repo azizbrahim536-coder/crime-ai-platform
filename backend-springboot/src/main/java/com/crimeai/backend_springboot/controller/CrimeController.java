@@ -2,6 +2,7 @@ package com.crimeai.backend_springboot.controller;
 
 import com.crimeai.backend_springboot.entity.Crime;
 import com.crimeai.backend_springboot.service.CrimeService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,16 +42,19 @@ public class CrimeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'ENQUETEUR')")
     public Crime createCrime(@RequestBody Crime crime) {
         return crimeService.createCrime(crime);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ENQUETEUR')")
     public Crime updateCrime(@PathVariable Long id, @RequestBody Crime crime) {
         return crimeService.updateCrime(id, crime);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteCrime(@PathVariable Long id) {
         crimeService.deleteCrime(id);
         return "Crime supprimé avec succès";

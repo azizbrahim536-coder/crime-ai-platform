@@ -3,6 +3,7 @@ import { CrimeService } from '../../services/crime.service';
 import { AffaireService } from '../../services/affaire.service';
 import { Crime } from '../../models/crime';
 import { Affaire } from '../../models/affaire';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-crimes',
@@ -36,7 +37,9 @@ export class CrimesComponent implements OnInit {
 
   constructor(
     private crimeService: CrimeService,
-    private affaireService: AffaireService
+    private affaireService: AffaireService,
+    public authService: AuthService
+
   ) {}
 
   ngOnInit(): void {

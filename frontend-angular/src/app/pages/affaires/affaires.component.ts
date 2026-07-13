@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AffaireService } from '../../services/affaire.service';
 import { Affaire } from '../../models/affaire';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-affaires',
@@ -19,8 +20,11 @@ newAffaire: Affaire = {
   statut: 'OUVERTE'
 };
 
-  constructor(private affaireService: AffaireService) {
-    
+  constructor(private affaireService: AffaireService ,
+    public authService: AuthService
+
+  ) {
+
   }
 
   ngOnInit(): void {

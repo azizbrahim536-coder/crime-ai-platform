@@ -1,7 +1,8 @@
 <div class="container">
 
   <h2>Dashboard statistiques</h2>
-  <button class="excel-btn" (click)="downloadExcel()">
+  <button class="excel-btn" (click)="downloadExcel()"   *ngIf="authService.hasAnyRole(['ADMIN', 'ANALYSTE'])"
+>
   Télécharger Excel
 </button>
 

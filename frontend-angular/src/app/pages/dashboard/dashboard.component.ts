@@ -4,6 +4,7 @@ import { DashboardStats } from '../../models/dashboard-stats';
 
 import Chart from 'chart.js/auto';
 import { ReportService } from 'src/app/services/report.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-  private reportService: ReportService) {}
+  private reportService: ReportService,
+  public authService: AuthService
+) {}
 
   ngOnInit(): void {
     this.loadStats();

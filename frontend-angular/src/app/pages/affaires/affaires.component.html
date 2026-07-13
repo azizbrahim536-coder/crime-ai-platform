@@ -57,15 +57,18 @@
           <td>{{ affaire.statut }}</td>
           <td>{{ affaire.dateCreation }}</td>
           <td>
-  <button class="edit-btn" (click)="editAffaire(affaire)">
-    Éditer
-  </button>
+ <button
+  *ngIf="authService.hasAnyRole(['ADMIN', 'ENQUETEUR'])"
+  class="edit-btn"
+  (click)="editAffaire(affaire)">
+  Éditer
+</button>
 
-  <button class="delete-btn" (click)="deleteAffaire(affaire.id)">
-    Supprimer
-  </button>
-  <button class="details-btn" [routerLink]="['/affaires', affaire.id]">
-  Détails
+<button
+  *ngIf="authService.hasRole('ADMIN')"
+  class="delete-btn"
+  (click)="deleteAffaire(affaire.id)">
+  Supprimer
 </button>
 </td>
         </tr>

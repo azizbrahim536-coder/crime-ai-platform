@@ -2,6 +2,7 @@ package com.crimeai.backend_springboot.controller;
 
 import com.crimeai.backend_springboot.entity.PersonneImpliquee;
 import com.crimeai.backend_springboot.service.PersonneImpliqueeService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +29,14 @@ public class PersonneImpliqueeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'ENQUETEUR')")
     public PersonneImpliquee createPersonne(@RequestBody PersonneImpliquee personne) {
         return personneService.createPersonne(personne);
     }
 
+
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ENQUETEUR')")
     public PersonneImpliquee updatePersonne(
             @PathVariable Long id,
             @RequestBody PersonneImpliquee personne
@@ -41,6 +45,7 @@ public class PersonneImpliqueeController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deletePersonne(@PathVariable Long id) {
         personneService.deletePersonne(id);
         return "Personne supprimée avec succès";

@@ -104,11 +104,11 @@
             <span *ngIf="!personne.affaire">Non liée</span>
           </td>
           <td>
-            <button class="edit-btn" (click)="editPersonne(personne)">
+            <button class="edit-btn" (click)="editPersonne(personne)" *ngIf="authService.hasRole('ADMIN')">
               Éditer
             </button>
 
-            <button class="delete-btn" (click)="deletePersonne(personne.id)">
+            <button class="delete-btn" (click)="deletePersonne(personne.id)" *ngIf="authService.hasRole('ADMIN')">
               Supprimer
             </button>
           </td>

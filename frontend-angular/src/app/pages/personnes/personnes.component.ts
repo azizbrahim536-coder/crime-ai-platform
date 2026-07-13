@@ -3,6 +3,7 @@ import { PersonneImpliquee } from '../../models/personne-impliquee';
 import { Affaire } from '../../models/affaire';
 import { PersonneImpliqueeService } from '../../services/personne-impliquee.service';
 import { AffaireService } from '../../services/affaire.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-personnes',
@@ -31,7 +32,8 @@ export class PersonnesComponent implements OnInit {
 
   constructor(
     private personneService: PersonneImpliqueeService,
-    private affaireService: AffaireService
+    private affaireService: AffaireService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

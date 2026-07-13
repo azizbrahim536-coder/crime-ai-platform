@@ -136,11 +136,12 @@
             <span *ngIf="!crime.affaire">Non liée</span>
           </td>
           <td>
-  <button class="edit-btn" (click)="editCrime(crime)">
+  <button class="edit-btn" (click)="editCrime(crime)"
+  *ngIf="authService.hasAnyRole(['ADMIN', 'ENQUETEUR'])">
     Éditer
   </button>
 
-  <button class="delete-btn" (click)="deleteCrime(crime.id)">
+  <button class="delete-btn" (click)="deleteCrime(crime.id)" *ngIf="authService.hasRole('ADMIN')">
     Supprimer
   </button>
 </td>

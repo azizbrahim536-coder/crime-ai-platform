@@ -54,4 +54,12 @@ export class AuthService {
     localStorage.removeItem(this.emailKey);
     localStorage.removeItem(this.rolesKey);
   }
+
+  hasRole(role: string): boolean {
+  return this.getRoles().includes(role);
+}
+
+ hasAnyRole(roles: string[]): boolean {
+  return roles.some(role => this.hasRole(role));
+}
 }

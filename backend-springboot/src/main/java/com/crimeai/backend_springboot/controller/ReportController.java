@@ -6,6 +6,7 @@ import com.crimeai.backend_springboot.service.ReportService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +23,7 @@ public class ReportController {
     }
 
     @GetMapping("/affaires/{id}/pdf")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYSTE')")
     public ResponseEntity<byte[]> downloadAffairePdf(@PathVariable Long id) {
         byte[] pdf = reportService.generateAffairePdf(id);
 
@@ -32,6 +34,7 @@ public class ReportController {
     }
 
     @GetMapping("/crimes/excel")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYSTE')")
     public ResponseEntity<byte[]> downloadCrimesExcel() {
         byte[] excel = excelService.generateCrimesExcel();
 
