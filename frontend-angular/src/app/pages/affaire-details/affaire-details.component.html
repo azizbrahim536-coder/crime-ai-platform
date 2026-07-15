@@ -5,6 +5,9 @@
   <button class="pdf-btn" (click)="downloadPdf()">
   Télécharger rapport PDF
 </button>
+<button class="graph-btn" [routerLink]="['/graph/affaire', affaireId]">
+  Voir graph relations
+</button>
 
   <div *ngIf="affaire" class="details-card">
     <h3>{{ affaire.numeroAffaire }} - {{ affaire.titre }}</h3>

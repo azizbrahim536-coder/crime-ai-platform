@@ -53,3 +53,17 @@ td {
 .pdf-btn:hover {
   background: #047857;
 }
+.graph-btn {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.graph-btn:hover {
+  background: #5b21b6;
+}

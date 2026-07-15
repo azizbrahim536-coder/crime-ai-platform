@@ -13,6 +13,7 @@ import { AffaireDetailsComponent } from './pages/affaire-details/affaire-details
 
 import { AuthGuard } from './guards/auth.guard';
 import { ChatbotComponent } from './pages/chatbot/chatbot.component';
+import { RelationsGraphComponent } from './pages/relations-graph/relations-graph.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,11 @@ const routes: Routes = [
     {
   path: 'chatbot',
   component: ChatbotComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'graph/affaire/:id',
+  component: RelationsGraphComponent,
   canActivate: [AuthGuard]
 },
 

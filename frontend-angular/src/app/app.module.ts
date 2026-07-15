@@ -18,6 +18,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ChatbotComponent } from './pages/chatbot/chatbot.component';
+import { RelationsGraphComponent } from './pages/relations-graph/relations-graph.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChatbotComponent } from './pages/chatbot/chatbot.component';
     AffaireDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    RelationsGraphComponent
   ],
   imports: [
     BrowserModule,
