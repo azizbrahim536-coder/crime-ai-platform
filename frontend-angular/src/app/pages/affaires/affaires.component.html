@@ -70,6 +70,10 @@
   (click)="deleteAffaire(affaire.id)">
   Supprimer
 </button>
+<button class="details-btn" [routerLink]="['/affaires', affaire.id]"
+*ngIf="authService.hasAnyRole(['ADMIN', 'ENQUETEUR'])">
+  Détails
+</button>
 </td>
         </tr>
       </tbody>
